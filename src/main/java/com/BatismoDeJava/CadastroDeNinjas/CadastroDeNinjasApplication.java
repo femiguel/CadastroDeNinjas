@@ -10,7 +10,4 @@ public class CadastroDeNinjasApplication {
 		SpringApplication.run(CadastroDeNinjasApplication.class, args);
 	}
 
-	static void main() {
-		System.out.println("Hello World");
-	}
 }
