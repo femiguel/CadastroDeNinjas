@@ -47,8 +47,5 @@ public class NinjaModel {
         this.idade = idade;
     }
 
-    @Override
-    public String toString() {
-        return "NinjaModel{}";
-    }
+
 }
