@@ -1,4 +1,4 @@
-package com.BatismoDeJava.CadastroDeNinjas;
+package com.BatismoDeJava.CadastroDeNinjas.Ninjas.Controller.Service;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +10,9 @@ public class NinjaController {
 
 
     @GetMapping("/boasvindas")
-    public String boasVindas(){
+    public String boasVindas() {
         return "Essa é a minha primeira mensagem nessa rota";
     }
-
-
 
 
 }
