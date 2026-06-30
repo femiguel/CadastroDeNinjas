@@ -2,11 +2,20 @@ package com.BatismoDeJava.CadastroDeNinjas.Missoes;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //CONTROLAR A ROTA
 @RestController
 //CRIAR O MEU CAMINHO INICIAL
 @RequestMapping("/missoes")
 public class MissoesController {
+
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
+
     @GetMapping("/missoes")
     public String missoes() {
         return "Essa são as minhas missoes Ninjas";
@@ -21,8 +30,8 @@ public class MissoesController {
 
     //READ
     @GetMapping("/ler")
-    public String ler(){
-        return "Listar missoes";
+    public List<MissoesModel> listarMissoes(){
+        return missoesService.listarMissoes();
     }
 
     //UPDATE
