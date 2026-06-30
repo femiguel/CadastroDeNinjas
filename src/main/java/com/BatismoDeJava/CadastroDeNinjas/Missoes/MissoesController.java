@@ -1,8 +1,10 @@
 package com.BatismoDeJava.CadastroDeNinjas.Missoes;
 
+import com.BatismoDeJava.CadastroDeNinjas.Ninjas.NinjaModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //CONTROLAR A ROTA
 @RestController
@@ -26,6 +28,12 @@ public class MissoesController {
     @PostMapping("/criar")
     public String criarMissoes() {
         return "Criar missão";
+    }
+
+    //READ POR ID
+    @GetMapping("/ler/{id}")
+    public MissoesModel lerNinjaPorId(@PathVariable Long id){
+        return missoesService.lerMissaoPorId(id);
     }
 
     //READ

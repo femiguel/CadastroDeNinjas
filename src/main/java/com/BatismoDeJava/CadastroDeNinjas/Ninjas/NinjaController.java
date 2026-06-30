@@ -3,6 +3,7 @@ package com.BatismoDeJava.CadastroDeNinjas.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninja")
@@ -26,13 +27,13 @@ public class NinjaController {
     }
 
     //MOSTRAR NINJA POR ID (READ)
-    @GetMapping("/ler")
-    public String mostrarNinjaPorId(){
-        return "Mostrar ninjas por iD";
+    @GetMapping("/ler/{id}")
+    public NinjaModel listarNinjaPorId(@PathVariable Long id){
+        return ninjaService.listarNinjaPorId(id);
     }
 
     //MOSTRAR OS NINJAS (READ)
-    @GetMapping("/lerNinjas")
+    @GetMapping("/ler")
     public List<NinjaModel> listarNinjas(){
         return ninjaService.listarNinja();
     }
