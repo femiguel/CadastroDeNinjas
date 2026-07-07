@@ -38,10 +38,14 @@ public class MissoesService {
         return missoesRepository.save(missao);
     }
 
-//    //update
-//    public MissoesModel updateMissao(MissoesModel id){
-//        return missoesRepository.
-//    }
+    //update
+    public MissoesModel updateMissao(Long id, MissoesModel atualizarMissao){
+        if (missoesRepository.existsById(id)){
+            atualizarMissao.setId(id);
+            missoesRepository.save(atualizarMissao);
+        }
+        return null;
+    }
 
 
 }

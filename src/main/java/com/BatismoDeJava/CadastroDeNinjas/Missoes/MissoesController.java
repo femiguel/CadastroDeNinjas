@@ -48,9 +48,11 @@ public class MissoesController {
         missoesService.deletarMissao(id);
     }
 
-//    //UPDATE
-//    @PutMapping("/update/{id}")
-//    public MissoesModel updateMissao(@PathVariable MissoesModel id){
-//        return missoesService.updateMissao(id);
-//    }
+    //UPDATE
+    @PutMapping("/update/{id}")
+    public MissoesModel updateMissao(@PathVariable Long id,@RequestBody MissoesModel missaoAtualizada){
+        return missoesService.updateMissao(id, missaoAtualizada);
+    }
+
+
 }
