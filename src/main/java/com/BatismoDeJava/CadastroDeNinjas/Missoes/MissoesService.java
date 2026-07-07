@@ -17,12 +17,31 @@ public class MissoesService {
         this.missoesRepository = missoesRepository;
     }
 
+    //listar
     public List<MissoesModel> listarMissoes(){
         return missoesRepository.findAll();
     }
 
+    //listar por id
     public MissoesModel lerMissaoPorId(Long id){
         Optional<MissoesModel> missaoPorId = missoesRepository.findById(id);
         return missaoPorId.orElse(null);
     }
+
+    //deletar
+    public void deletarMissao(Long id){
+        missoesRepository.deleteById(id);
+    }
+
+    //criar
+    public MissoesModel criarMissao(MissoesModel missao){
+        return missoesRepository.save(missao);
+    }
+
+//    //update
+//    public MissoesModel updateMissao(MissoesModel id){
+//        return missoesRepository.
+//    }
+
+
 }

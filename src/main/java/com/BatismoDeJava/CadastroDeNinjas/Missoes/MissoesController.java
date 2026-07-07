@@ -19,15 +19,14 @@ public class MissoesController {
     }
 
     @GetMapping("/missoes")
-    public String missoes() {
-        return "Essa são as minhas missoes Ninjas";
-
+    public List<MissoesModel> missoes() {
+        return missoesService.listarMissoes();
     }
 
     //CRIAR
     @PostMapping("/criar")
-    public String criarMissoes() {
-        return "Criar missão";
+    public MissoesModel criarMissao(@RequestBody MissoesModel missao){
+        return missoesService.criarMissao(missao);
     }
 
     //READ POR ID
@@ -42,15 +41,16 @@ public class MissoesController {
         return missoesService.listarMissoes();
     }
 
-    //UPDATE
-    @PutMapping("/update")
-    public String update(){
-        return "Atualizar missao";
-    }
 
     //DELETE
-    @DeleteMapping("/deletar")
-    public String delete(){
-        return "Deletar missao";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissao(@PathVariable Long id){
+        missoesService.deletarMissao(id);
     }
+
+//    //UPDATE
+//    @PutMapping("/update/{id}")
+//    public MissoesModel updateMissao(@PathVariable MissoesModel id){
+//        return missoesService.updateMissao(id);
+//    }
 }
