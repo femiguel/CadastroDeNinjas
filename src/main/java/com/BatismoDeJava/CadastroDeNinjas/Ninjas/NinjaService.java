@@ -18,6 +18,7 @@ public class NinjaService {
         this.ninjaMapper = ninjaMapper;
     }
 
+    //LISTAR NINJAS
     public List<NinjaDTO> listarNinja() {
         List<NinjaModel> ninjas = ninjaRepository.findAll();
         return ninjas.stream()
@@ -25,6 +26,7 @@ public class NinjaService {
                 .collect(Collectors.toList());
     }
 
+    //LISTAR NINJA POR ID
     public NinjaDTO listarNinjaPorId(Long id) {
         Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
         return ninjaPorId.map(ninjaMapper::map).orElse(null);
