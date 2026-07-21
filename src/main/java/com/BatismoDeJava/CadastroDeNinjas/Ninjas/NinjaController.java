@@ -32,32 +32,48 @@ public class NinjaController {
 
     //MOSTRAR NINJA POR ID (READ)
     @GetMapping("/ler/{id}")
-    public NinjaDTO listarNinjaPorId(@PathVariable Long id) {
-        return ninjaService.listarNinjaPorId(id);
+    public ResponseEntity<?> listarNinjaPorId(@PathVariable Long id) {
+        NinjaDTO ninjaPorId = ninjaService.listarNinjaPorId(id);
+        if (ninjaPorId != null) {
+            return ResponseEntity.ok(ninjaPorId);
+        } else return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("O ninja com id " + id + " não foi localizado");
     }
+
 
     //MOSTRAR OS NINJAS (READ)
     @GetMapping("/ler")
-    public List<NinjaDTO> listarNinjas() {
-        return ninjaService.listarNinja();
+    public ResponseEntity<List<NinjaDTO>> listarNinjas() {
+        List<NinjaDTO> ninjas = ninjaService.listarNinja();
+        return ResponseEntity.ok(ninjas);
     }
 
 
     //DELETAR NINJA (DELETE)
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarNinjaPorID(@PathVariable Long id) {
-        if(ninjaService.listarNinjaPorId(id) != null){
+        if (ninjaService.listarNinjaPorId(id) != null) {
             ninjaService.deletarID(id);
-            return ResponseEntity.ok("Ninja com iD: " + id + " deletado com sucesso.");
-        }
-        else return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.ok("Ninja com iD: " + id + " deletado com sucesso");
+        } else return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("O ninja com o iD " + id + " não encontrado");
     }
 
     //UPDATE NINJA
     @PutMapping("/update/{id}")
-    public NinjaDTO updateNinja (@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado){
-        return ninjaService.atualizarNinja(id, ninjaAtualizado);
+    public ResponseEntity<?> updateNinja(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
+        NinjaDTO ninja = ninjaService.atualizarNinja(id, ninjaAtualizado);
+        if (ninja != null) {
+            return ResponseEntity.ok(ninjaAtualizado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O ninja com ID: " + id + " não foi encontrado");
+        }
     }
+
+
+
+
+
 }
 
